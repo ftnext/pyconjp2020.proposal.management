@@ -38,13 +38,13 @@ class TimeTableColumn(models.Model):
 
 class Talk(models.Model):
     id = models.AutoField(primary_key=True)
-    speaker_name = models.CharField(max_length=100)
-    title = models.CharField(max_length=200)
-    status = models.CharField(max_length=100)
-    tag = models.CharField(max_length=100)
-    talk_language = models.CharField(max_length=100)
-    slide_language = models.CharField(max_length=100)
-    target_audience = models.CharField(max_length=100)
+    speaker_name = models.CharField(max_length=100, null=True, blank=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
+    status = models.CharField(max_length=100, null=True, blank=True)
+    tag = models.CharField(max_length=100, null=True, blank=True)
+    talk_language = models.CharField(max_length=100, null=True, blank=True)
+    slide_language = models.CharField(max_length=100, null=True, blank=True)
+    target_audience = models.CharField(max_length=100, null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 
