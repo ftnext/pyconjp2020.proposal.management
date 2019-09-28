@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def table_list(request):
+    return render(request, "timetables/table_list.html", {})
