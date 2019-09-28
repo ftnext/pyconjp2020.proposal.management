@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_POST
 
 
-from .forms import TimeTableForm
+from .forms import TimeTableForm, TimeTableColumnForm
 from .models import TimeTable
 
 
@@ -18,8 +18,11 @@ def table_list(request):
 
 def table_detail(request, pk):
     timetable = get_object_or_404(TimeTable, pk=pk)
+    column_form = TimeTableColumnForm()
     return render(
-        request, "timetables/table_detail.html", {"timetable": timetable}
+        request,
+        "timetables/table_detail.html",
+        {"timetable": timetable, "column_form": column_form},
     )
 
 
@@ -29,3 +32,14 @@ def table_new(request):
     if form.is_valid():
         timetable = form.save()
         return redirect("timetables:table_detail", pk=timetable.pk)
+
+
+@require_POST
+def column_new(request, table_pk):
+    table = get_object_or_404(TimeTable, pk=table_pk)
+    form = TimeTableColumnForm(request.POST)
+    if form.is_valid():
+        column = form.save(commit=False)
+        column.table_id = table
+        column.save()
+        return redirect("timetables:table_detail", pk=table_pk)

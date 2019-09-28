@@ -8,4 +8,5 @@ urlpatterns = [
     path("", views.table_list, name="table_list"),
     path("<uuid:pk>/", views.table_detail, name="table_detail"),
     path("new/", views.table_new, name="table_new"),
+    path("<uuid:table_pk>/column_new/", views.column_new, name="column_new"),
 ]
