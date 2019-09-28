@@ -60,6 +60,6 @@ def column_new(request, table_pk):
     form = TimeTableColumnForm(request.POST)
     if form.is_valid():
         column = form.save(commit=False)
-        column.table_id = table
+        column.table = table
         column.save()
         return redirect("timetables:table_detail", pk=table_pk)

@@ -30,7 +30,7 @@ class TimeTableRow(models.Model):
 
 
 class TimeTableColumn(models.Model):
-    table_id = models.ForeignKey(
+    table = models.ForeignKey(
         TimeTable,
         on_delete=models.CASCADE,
         related_name="columns",
@@ -39,4 +39,4 @@ class TimeTableColumn(models.Model):
     name = models.CharField("列名", max_length=20)
 
     def __str__(self):
-        return f"{self.table_id} {self.name}"
+        return f"{self.table} {self.name}"
