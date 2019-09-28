@@ -1,1 +1,7 @@
 <h1>タイムテーブル一覧</h1>
+
+<h2>タイムテーブル新規作成</h2>
+<form method="POST">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create</button>
+</form>
