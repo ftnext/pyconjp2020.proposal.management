@@ -73,6 +73,14 @@ class Talk(models.Model):
         (ALL, "All"),
     ]
 
+    table = models.ForeignKey(
+        TimeTable,
+        on_delete=models.CASCADE,
+        related_name="talks",
+        verbose_name="所属タイムテーブル",
+        blank=True,
+        null=True,
+    )
     speaker_name = models.CharField("発表者氏名", max_length=100)
     title = models.CharField("タイトル", max_length=200)
     status = models.CharField(
