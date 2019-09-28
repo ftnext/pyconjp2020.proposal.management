@@ -8,7 +8,21 @@
         <td>{{ column.name }}</td>
     {% endfor %}
   </tr>
+  {% for row in rows %}
+    <tr>
+      <td>{{ row.start_at }}</td>
+      {% for column in columns %}
+        <td>&nbsp;</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
 </table>
+
+<h2>タイムテーブルにRowを作成</h2>
+<form method="POST" action="{% url 'timetables:row_new' table_pk=timetable.pk %}">{% csrf_token %}
+  {{ row_form.as_p }}
+  <button type="submit">Create</button>
+</form>
 
 <h2>タイムテーブルにColumnを作成</h2>
 <form method="POST" action="{% url 'timetables:column_new' table_pk=timetable.pk %}">{% csrf_token %}
