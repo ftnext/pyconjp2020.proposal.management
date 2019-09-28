@@ -10,4 +10,9 @@ urlpatterns = [
     path("new/", views.table_new, name="table_new"),
     path("<uuid:table_pk>/column_new/", views.column_new, name="column_new"),
     path("<uuid:table_pk>/row_new/", views.row_new, name="row_new"),
+    path(
+        "<uuid:table_pk>/<int:row_pk>/<int:column_pk>/item_new/",
+        views.item_new,
+        name="item_new",
+    ),
 ]
