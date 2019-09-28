@@ -99,3 +99,27 @@ class Talk(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TimeTableItem(models.Model):
+    row = models.ForeignKey(
+        TimeTableRow,
+        on_delete=models.CASCADE,
+        related_name="item",
+        verbose_name="行",
+    )
+    column = models.ForeignKey(
+        TimeTableColumn,
+        on_delete=models.CASCADE,
+        related_name="item",
+        verbose_name="列",
+    )
+    talk = models.ForeignKey(
+        Talk,
+        on_delete=models.CASCADE,
+        related_name="table_item",
+        verbose_name="トーク",
+    )
+
+    def __str__(self):
+        return f"{self.talk}"
