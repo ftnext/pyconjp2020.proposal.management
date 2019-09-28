@@ -13,3 +13,13 @@ class TimeTable(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TimeTableColumn(models.Model):
+    table_id = models.ForeignKey(
+        TimeTable, on_delete=models.CASCADE, related_name="タイムテーブルID"
+    )
+    name = models.CharField("列名", max_length=20)
+
+    def __str__(self):
+        return f"{self.table_id} {self.name}"
