@@ -18,11 +18,16 @@ def table_list(request):
 
 def table_detail(request, pk):
     timetable = get_object_or_404(TimeTable, pk=pk)
+    columns = timetable.columns.all()
     column_form = TimeTableColumnForm()
     return render(
         request,
         "timetables/table_detail.html",
-        {"timetable": timetable, "column_form": column_form},
+        {
+            "timetable": timetable,
+            "columns": columns,
+            "column_form": column_form,
+        },
     )
 
 

@@ -1,6 +1,15 @@
 <h1>{{ timetable.title }}</h1>
 <p>{{ timetable.description|linebreaksbr }}</p>
 
+<table>
+  <tr>
+    <td>&nbsp;</td>
+    {% for column in columns %}
+        <td>{{ column.name }}</td>
+    {% endfor %}
+  </tr>
+</table>
+
 <h2>タイムテーブルにColumnを作成</h2>
 <form method="POST" action="{% url 'timetables:column_new' table_pk=timetable.pk %}">{% csrf_token %}
   {{ column_form.as_p }}
