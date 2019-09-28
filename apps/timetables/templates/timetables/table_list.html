@@ -12,7 +12,7 @@
 </ul>
 
 <h2>タイムテーブル新規作成</h2>
-<form method="POST">{% csrf_token %}
+<form method="POST" action="{% url 'timetables:table_new' %}">{% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Create</button>
 </form>
