@@ -13,3 +13,30 @@ class TimeTable(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TimeTableRow(models.Model):
+    table = models.ForeignKey(
+        TimeTable,
+        on_delete=models.CASCADE,
+        related_name="rows",
+        verbose_name="タイムテーブル",
+    )
+    start_at = models.TimeField("開始時刻")
+    duration = models.DurationField("持続時間")
+
+    def __str__(self):
+        return f"{self.table} {self.start_at}"
+
+
+class TimeTableColumn(models.Model):
+    table = models.ForeignKey(
+        TimeTable,
+        on_delete=models.CASCADE,
+        related_name="columns",
+        verbose_name="タイムテーブルID",
+    )
+    name = models.CharField("列名", max_length=20)
+
+    def __str__(self):
+        return f"{self.table} {self.name}"
