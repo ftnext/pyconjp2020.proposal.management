@@ -1,7 +1,11 @@
 <h1>タイムテーブル一覧</h1>
 <ul>
   {% for timetable in timetables %}
-    <li>{{ timetable.title }}</li>
+    <li>
+      <a href="{% url 'timetables:table_detail' pk=timetable.pk %}">
+        {{ timetable.title }}
+      </a>
+    </li>
   {% empty %}
     <li>タイムテーブルはありません</li>
   {% endfor %}

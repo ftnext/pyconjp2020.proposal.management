@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .forms import TimeTableForm
 from .models import TimeTable
@@ -11,4 +11,11 @@ def table_list(request):
         request,
         "timetables/table_list.html",
         {"form": form, "timetables": timetables},
+    )
+
+
+def table_detail(request, pk):
+    timetable = get_object_or_404(TimeTable, pk=pk)
+    return render(
+        request, "timetables/table_detail.html", {"timetable": timetable}
     )
