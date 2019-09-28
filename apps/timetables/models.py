@@ -17,7 +17,10 @@ class TimeTable(models.Model):
 
 class TimeTableColumn(models.Model):
     table_id = models.ForeignKey(
-        TimeTable, on_delete=models.CASCADE, related_name="タイムテーブルID"
+        TimeTable,
+        on_delete=models.CASCADE,
+        related_name="columns",
+        verbose_name="タイムテーブルID",
     )
     name = models.CharField("列名", max_length=20)
 
